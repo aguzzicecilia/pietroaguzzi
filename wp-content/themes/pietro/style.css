@@ -1,0 +1,320 @@
+/* Rimuovere margini e padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Impostazioni di base per il body */
+body {
+  font-family: 'Switzer', sans-serif;
+  font-size: 16px; /* Regola opzionale per impostare una dimensione standard */
+  line-height: 110%; /* Migliora la leggibilità */
+  overflow-x: hidden; /* Impedisce lo scroll orizzontale */
+  cursor: none;
+}
+
+/* Selezione per le immagini: */
+img::selection {
+  background: rgba(255, 255, 255, 0); /* Nessun sfondo (trasparente) */
+  color: rgb(0, 0, 0); /* Nessun cambio al colore del testo (non applicabile alle immagini) */
+  text-shadow: none; /* Nessuna ombra */
+}
+
+/* Selezione per il testo: */
+::selection {
+  background: rgb(195, 255, 0); /* Sfondo rosso con trasparenza */
+  color: #000000; /* Colore del testo bianco */
+  text-shadow: none; /* Nessuna ombra per il testo selezionato */
+}
+
+/*::selection {background: rgba(255, 255, 255, 0); color: rgb(0, 0, 0); text-shadow: none;}*/
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 110%;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+body.about-page .cursor {
+  display: none; /* Mantieni questa regola per nascondere il cursore personalizzato */
+}
+
+body.about-page {
+  cursor: default; /* Imposta il cursore predefinito sulla pagina about */
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%); /* Centra l'header orizzontalmente */
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 10000; /* Per tenere l'header sopra altri contenuti */
+}
+
+.header-content h1 {
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 110%;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.header-content .about-link {
+  font-size: 16px;
+  line-height: 110%;
+  color: #000000;
+  text-decoration: none;
+  margin-top: 4px; /* Distanza tra il nome e il link */
+  display: block; 
+}
+
+.header-content .about-link:hover {
+  color: #ddd;
+}
+
+/* Sezione del progetto */
+.project-section {
+  height: 100vh; /* Ogni progetto occupa l'intero viewport */
+  width: 100%; /* Larghezza piena */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #ffffff;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* Carosello */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Gestione delle immagini */
+.carousel-item {
+  display: none; /* Nascondi tutte le immagini */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item.active {
+  display: flex; /* Mostra solo l'immagine attiva */
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel img {
+  max-width: calc(100% - 40px); /* Margini laterali per assicurare che non siano al vivo */
+  max-height: calc(100vh - 40px); /* Altezza massima considerando margini sopra e sotto */
+  padding: 0 10px; /* Spazio interno */
+  margin: 0 auto; /* Centra l'immagine orizzontalmente */
+  object-fit: contain; /* Assicura che le proporzioni originali vengano rispettate */
+  box-sizing: border-box; /* Considera il padding e il margine nel calcolo della dimensione */
+}
+
+
+/*
+.carousel-counter {
+  position: absolute;
+  bottom: 95px;
+  left: 50%;
+  transform: translateX(-50%)
+  font-size: 16px;
+  color: #000000;
+  z-index: 20;
+  text-align: center;
+}*/
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:#000000(0, 0, 0, 0.1);  /* Leggera trasparenza */
+  z-index: 10;  /* Mettilo sopra le immagini, ma sotto il contatore e i bottoni */
+  pointer-events: none; /* Impedisce che l'overlay interferisca con i clic sugli altri elementi */
+}
+
+
+.project-title {
+  position: absolute;
+  bottom: -22px;
+  text-align: center;
+  color: #000000;
+  font-size: 16px;
+  line-height: 110%;
+  text-transform: uppercase;
+  font-weight: 100;
+  width: 100%;
+  z-index: 10; /* Per stare sopra l'immagine */
+}
+
+/* Stile per il contenuto delle informazioni del progetto */
+.project-info {
+  font-size: 16px;
+  line-height: 110%;
+  position: absolute;
+  top: 50%; /* Posiziona il contenuto al centro verticale della sezione */
+  left: 50%; /* Posiziona il contenuto al centro orizzontale della sezione */
+  transform: translate(-50%, -50%); /* Centra esattamente la sezione */
+  display: none; /* Nascondi per default */
+  max-width: 480px; /* Larghezza massima per le informazioni */
+  text-align: center; /* Centra il testo all'interno del contenitore */
+  white-space: 10px;
+}
+
+/* Stile per il pulsante info+ */
+.project-title .info-toggle {
+  font-size: 16px; /* Stesso font size del titolo */
+  font-weight: 100;
+  line-height: 110%;
+  color: #000000; /* Stesso colore del titolo */
+  cursor: pointer; /* Mostra il cursore a mano */
+}
+
+.project-title .info-toggle:hover {
+  color: #ddd; /* Cambia leggermente il colore per l'hover */
+}
+
+/* Navigazione prev/next
+.prev, .next {
+  cursor: pointer;
+}
+*/
+
+/* Sezione per la navigazione tra i progetti */
+html, body {
+  height: 100%;
+  overflow: hidden; /* Nascondi la barra di scroll */
+}
+
+/* About */
+.main-content {
+  position: absolute;
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra orizzontalmente */
+  transform: translate(-50%, -50%); /* Compensa il 50% per ancorare il contenuto al centro */
+  display: flex; /* Utilizza Flexbox */
+  flex-direction: column; /* Disposizione verticale degli elementi */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra orizzontalmente */
+  text-align: center; /* Centra il testo */
+  width: 100%; /* Occupa l'intera larghezza */
+  max-width: 480px; /* Limita la larghezza massima */
+  padding: 0 10px; /* Aggiungi spazio laterale */
+  box-sizing: border-box; /* Include padding nella larghezza totale */
+}
+
+.info-box {
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto; /* Centra orizzontalmente */
+  padding: 0 10px; /* Aggiunge spazio ai lati */
+  box-sizing: border-box; /* Garantisce che padding sia incluso nella larghezza totale */
+}
+
+.info-box p {
+  margin: 10px 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  color: #000000;
+  font-size: 16px;
+  line-height: 110%;
+  text-transform: lowercase;
+  width: 100%;
+  z-index: 10; /* Per stare sopra l'immagine */
+  padding: 8px
+}
+
+.footer a {
+  color: #000000; /* Imposta il colore del link a nero */
+  text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.footer a:hover {
+  color: #ddd; /* Facoltativo: cambia colore al passaggio del mouse */
+}
+
+/* Layout per dispositivi mobili */
+@media (min-width: 901px) {
+  .carousel img {
+    width: auto;
+    max-height: calc(100vh - 60px);
+    padding-top: 90px;
+    padding-bottom: 90px;
+    object-fit: contain;
+  }
+
+  .main-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 480px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .project-info{
+    width: calc(100% - 10px); /* Larghezza 100% meno 10px di margine su ciascun lato */
+    margin: 10px auto; /* Margine di 10px su cima e fondo, centrato orizzontalmente */
+    padding: 0 10px; /* Aggiunge il padding laterale per evitare che il contenuto tocchi i bordi */
+    box-sizing: border-box; /* Considera padding e bordi nella larghezza totale */
+    display: block; /* Assicura che l'elemento venga trattato come blocco */
+  }
+  .main-content {
+    width: calc(100% - 10px);
+    margin: 10px auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+    display: flex; /* mantiene il centraggio verticale e orizzontale */
+    justify-content: center;
+    align-items: center;
+  }
+  .carousel img {
+    width: calc(100% - 10px);
+    height: auto;
+    padding-top: 60px;    /* qui scegli il padding top */
+    padding-bottom: 60px; /* qui scegli il padding bottom */
+    padding-left: 10px;   /* mantieni il padding laterale */
+    padding-right: 10px;
+    object-fit: contain;
+    max-height: calc(100vh - 60px);
+  }
+}
