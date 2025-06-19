@@ -90,7 +90,7 @@ body.about-page {
 
 /* Sezione del progetto */
 .project-section {
-  height: 100vh; /* Ogni progetto occupa l'intero viewport */
+  height: 100shv; /* Ogni progetto occupa l'intero viewport */
   width: 100%; /* Larghezza piena */
   display: flex;
   justify-content: center;
@@ -130,7 +130,7 @@ body.about-page {
 
 .carousel img {
   max-width: calc(100% - 40px); /* Margini laterali per assicurare che non siano al vivo */
-  max-height: calc(100vh - 40px); /* Altezza massima considerando margini sopra e sotto */
+  max-height: calc(100shv - 40px); /* Altezza massima considerando margini sopra e sotto */
   padding: 0 10px; /* Spazio interno */
   margin: 0 auto; /* Centra l'immagine orizzontalmente */
   object-fit: contain; /* Assicura che le proporzioni originali vengano rispettate */
@@ -270,7 +270,7 @@ html, body {
 @media (min-width: 901px) {
   .carousel img {
     width: auto;
-    max-height: calc(100vh - 60px);
+    max-height: calc(100shv - 60px);
     padding-top: 90px;
     padding-bottom: 90px;
     object-fit: contain;
@@ -315,6 +315,6 @@ html, body {
     padding-left: 10px;   /* mantieni il padding laterale */
     padding-right: 10px;
     object-fit: contain;
-    max-height: calc(100vh - 60px);
+    max-height: calc(100shv - 60px);
   }
 }
