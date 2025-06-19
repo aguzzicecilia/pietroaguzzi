@@ -90,7 +90,7 @@ body.about-page {
 
 /* Sezione del progetto */
 .project-section {
-  height: 100shv; /* Ogni progetto occupa l'intero viewport */
+  height: 100svh; /* Ogni progetto occupa l'intero viewport */
   width: 100%; /* Larghezza piena */
   display: flex;
   justify-content: center;
@@ -130,7 +130,7 @@ body.about-page {
 
 .carousel img {
   width: auto;  /* Mantieni la larghezza auto per preservare la ratio */
-  max-height: calc(100shv - 60px); /* L'altezza massima dell'immagine, considerando i padding */
+  max-height: calc(100svh - 60px); /* L'altezza massima dell'immagine, considerando i padding */
   padding-top: 90px; /* Aggiungi margine superiore */
   padding-bottom: 90px; /* Aggiungi margine inferiore */
   object-fit: contain; /* Mantieni la ratio originale */
