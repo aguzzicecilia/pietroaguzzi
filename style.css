@@ -46,6 +46,14 @@ img::selection {
   line-height: 110%;
   color: #000000;
   text-transform: uppercase;
+  display: none;
+}
+
+@media (hover:hover) {
+  .cursor {
+
+    display: block;
+  }
 }
 
 body.about-page .cursor {
